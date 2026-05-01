@@ -39,13 +39,13 @@ public class DepartmentStatsReporting {
 
         var teacherIds = actionsList.items.stream().mapToLong(a -> a.teacherId).distinct();
         var max = teacherIds.map(id -> teacherScore(id, actionsList)).max();
-        return max.orElse(-1);
+        return max.orElse(0L); // Raději 0 než -1, ať to sedí na JSON
     }
 
     private static long teacherScore(long teacherId, ActionsList actionsList) {
         // TODO 2.3: Doplň pomocnou metodu - součet všech přihlášených studentů na akcích daného učitele
 
         var result = actionsList.items.stream().filter(a -> a.teacherId == teacherId).mapToLong(a -> a.studentsCount).sum();
-        return 0;
+        return result;
     }
 }
