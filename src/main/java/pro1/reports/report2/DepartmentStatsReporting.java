@@ -39,7 +39,7 @@ public class DepartmentStatsReporting {
 
         var teacherIds = actionsList.items.stream().mapToLong(a -> a.teacherId).distinct();
         var max = teacherIds.map(id -> teacherScore(id, actionsList)).max();
-        return max.orElse(0L); // Raději 0 než -1, ať to sedí na JSON
+        return max.orElse(0L);
     }
 
     private static long teacherScore(long teacherId, ActionsList actionsList) {
